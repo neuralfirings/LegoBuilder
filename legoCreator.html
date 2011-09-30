@@ -207,10 +207,10 @@
 
 				var width = spacing * (numHorizontal - 1) + 2 * size;
 				var height = spacing * (numVertical - 1) + 2 * size;
-				var cube = new THREE.Mesh( new THREE.CubeGeometry(width, height, thickness), new THREE.MeshLambertMaterial({color: 0xffffff}) );
+				var cube = new THREE.Mesh( new THREE.CubeGeometry(width, height, 10), new THREE.MeshLambertMaterial({color: 0xffffff}) );
 				cube.position.x = .5 * spacing * (numHorizontal - 1);// - (size * .5 );
 				cube.position.y = .5 * spacing * (numVertical - 1);//   - (size * .5 );
-				cube.position.z = -1 * (thickness * .5);
+				cube.position.z = -1 * (10 * .5);
 				
 				camera.target.position.x = cube.position.x;
 				camera.target.position.y = cube.position.y;
@@ -218,6 +218,50 @@
 				cube.overdraw = true;
 				cubes.push(cube);
 				scene.addObject(cube);
+				
+				
+				
+				// Side 1
+				var cube = new THREE.Mesh( new THREE.CubeGeometry(width, 10, thickness), new THREE.MeshLambertMaterial({color: 0xffffff}) );
+				cube.position.x = .5 * spacing * (numHorizontal - 1);
+				cube.position.y = .5 * spacing * (numVertical - 1) - height/2 + 5;
+				cube.position.z = -1 * (10 * .5) - thickness/2;
+				cube.overdraw = true;
+				cubes.push(cube);
+				scene.addObject(cube);
+				
+				// Side 2
+				var cube = new THREE.Mesh( new THREE.CubeGeometry(width, 10, thickness), new THREE.MeshLambertMaterial({color: 0xffffff}) );
+				cube.position.x = .5 * spacing * (numHorizontal - 1);
+				cube.position.y = .5 * spacing * (numVertical - 1) + height/2 - 5;
+				cube.position.z = -1 * (10 * .5) - thickness/2;
+				cube.overdraw = true;
+				cubes.push(cube);
+				scene.addObject(cube);
+				
+				
+				// Side 3
+				var cube = new THREE.Mesh( new THREE.CubeGeometry(10, height, thickness), new THREE.MeshLambertMaterial({color: 0xffffff}) );
+				cube.position.x = .5 * spacing * (numHorizontal - 1) - width/2 + 5;
+				cube.position.y = .5 * spacing * (numVertical - 1);
+				cube.position.z = -1 * (10 * .5) - thickness/2;
+				cube.overdraw = true;
+				cubes.push(cube);
+				scene.addObject(cube);
+				
+				
+				// Side 4
+				var cube = new THREE.Mesh( new THREE.CubeGeometry(10, height, thickness), new THREE.MeshLambertMaterial({color: 0xffffff}) );
+				cube.position.x = .5 * spacing * (numHorizontal - 1) + width/2 - 5;
+				cube.position.y = .5 * spacing * (numVertical - 1);
+				cube.position.z = -1 * (10 * .5) - thickness/2;
+				cube.overdraw = true;
+				cubes.push(cube);
+				scene.addObject(cube);
+				
+				
+				
+				
 				
 				for (var i = 0; i < numHorizontal; i++){
 					for (var j = 0; j < numVertical; j++){
@@ -347,28 +391,6 @@
 			}
 
 			function render() {
-			/*
-				var d = 2000.0;
-				var r = d/2.0;
-				
-				if (targetX < 0){
-					targetX +=  d;
-				}
-				var x = (targetX % d)
-				if (x > r) {
-					x = r - (x - r);
-				}
-				
-				if (targetY < 0){
-					targetY +=  d;
-				}
-				var y = (targetY % d)
-				if (y > r) {
-					y = r - (y - r);
-				}
-				var z = r;
-				*/
-				
 				
 				var x = targetX + 50;
 				var y = -1 * targetY - 200;
@@ -380,7 +402,6 @@
 				camera.position.y = y;
 				camera.position.z = z;
 				
-				//$('#console').html(text);
 				renderer.render( scene, camera );
 
 			}
